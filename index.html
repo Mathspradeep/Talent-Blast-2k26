@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talent Blast 2K26 - KGiSL Institute of Technology</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@300;400;600;700;900&display=swap');
+
+        :root {
+            --bg-dark: #07030c;
+            --card-bg: rgba(12, 5, 22, 0.82);
+            --primary-violet: #8a2be2;
+            --vibrant-magenta: #e0115f;
+            --bright-gold: #ffd700;
+            --electric-cyan: #00f0ff;
+            --text-light: #ffffff;
+            --text-sub: #d0c4e4;
+            --border-gold: rgba(255, 215, 0, 0.5);
+            --radius-lg: 24px;
+            --radius-md: 14px;
+            --shadow-glow: 0 10px 40px rgba(224, 17, 95, 0.4), 0 0 30px rgba(0, 240, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-light);
+            line-height: 1.7;
+            padding: 30px 15px;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: var(--bg-dark);
+        }
+
+        .poster-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('poster.jpg') no-repeat center center fixed;
+            background-size: cover;
+            filter: brightness(0.45) contrast(1.15);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .poster-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(12, 5, 22, 0.4) 0%, rgba(7, 3, 12, 0.85) 100%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .brochure-card {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: var(--radius-lg);
+            padding: 45px 35px;
+            box-shadow: var(--shadow-glow);
+            border: 2px solid var(--border-gold);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px dashed var(--border-gold);
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+
+        .logo-box {
+            background: #ffffff;
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 16px;
+            box-shadow: 0 0 20px var(--bright-gold), 0 0 30px var(--vibrant-magenta);
+            margin-bottom: 18px;
+            border: 2px solid var(--bright-gold);
+        }
+
+        .college-logo {
+            max-width: 230px;
+            height: auto;
+            display: block;
+        }
+
+        header h1 {
+            font-family: 'Cinzel', serif;
+            color: #ffffff;
+            font-size: 2rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            text-shadow: 0 0 12px var(--vibrant-magenta), 0 0 20px var(--electric-cyan);
+        }
+
+        .college-info {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--vibrant-magenta), var(--primary-violet));
+            color: #ffffff;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 10px 32px;
+            border-radius: 50px;
+            border: 2px solid var(--bright-gold);
+            box-shadow: 0 0 20px rgba(224, 17, 95, 0.7);
+        }
+
+        .temple-sub-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--bright-gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--vibrant-magenta), #990033);
+            color: #ffffff;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--bright-gold);
+            box-shadow: 0 4px 15px rgba(224, 17, 95, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 25px var(--bright-gold);
+            border-color: #ffffff;
+        }
+
+        .btn-scorecard {
+            background: linear-gradient(135deg, var(--primary-violet), #4a0080);
+            box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
+        }
+
+        section {
+            margin-bottom: 35px;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--bright-gold);
+            font-size: 1.35rem;
+            font-weight: 700;
+            border-left: 4px solid var(--vibrant-magenta);
+            padding-left: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
+        }
+
+        ul.rules-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.rules-list li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            color: var(--text-light);
+        }
+
+        ul.rules-list li::before {
+            content: "💥";
+            position: absolute;
+            left: 0;
+            top: 2px;
+            font-size: 1.1rem;
+        }
+
+        .table-wrapper {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.25);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(12, 5, 22, 0.85);
+        }
+
+        th, td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+        }
+
+        th {
+            background: linear-gradient(90deg, rgba(224, 17, 95, 0.45), rgba(138, 43, 226, 0.45));
+            color: var(--bright-gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        td strong {
+            color: var(--electric-cyan);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .submission-card {
+            background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(224, 17, 95, 0.2));
+            border: 1.5px solid var(--border-gold);
+            border-radius: var(--radius-md);
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--electric-cyan);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            background: rgba(7, 3, 12, 0.9);
+            color: #ffffff;
+        }
+
+        .note {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--bright-gold);
+            padding: 16px 20px;
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            margin-top: 25px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--border-gold);
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            font-family: 'Cinzel', serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="poster-bg"></div>
+<div class="poster-overlay"></div>
+
+<div class="brochure-card">
+    <header>
+        <div class="logo-box">
+            <img src="logo.png" alt="KiTE Logo" class="college-logo" onerror="this.onerror=null; this.src='logo.jpg';">
+        </div>
+        <h1>KGiSL Institute of Technology</h1>
+        <p class="college-info">
+            (An Autonomous Institution) | Approved by AICTE, Affiliated to Anna University<br>
+            Accredited by NAAC (A Grade) & NBA<br>
+            KGiSL Campus, Saravanampatti, Coimbatore - 641035
+        </p>
+
+        <div class="event-badge">Talent Blast 2K26 — Solo Dance</div>
+
+        <div class="temple-sub-banner">
+            <span>🛕</span> Dedicated in the spirit of Brihadeeswarar Big Temple Nataraja <span>🛕</span>
+        </div>
+    </header>
+
+    <div class="action-bar">
+        <a href="https://bit.ly/I-Yr-Talent-Expo-2026-Solo-dance-score-card" target="_blank" class="btn btn-scorecard">
+            🏆 Open Score Card
+        </a>
+        <a href="#submit-song" class="btn">
+            🎵 Submit Audio Link
+        </a>
+    </div>
+
+    <section>
+        <h3>General Rules</h3>
+        <ul class="rules-list">
+            <li>The performance duration should be <strong>3 to 4 minutes</strong>.</li>
+            <li>Participants must submit their audio track (MP3 format) to the coordinators at least <strong>30 minutes before</strong> the event.</li>
+            <li>Any dance style is permitted (Freestyle, Classical, Folk, Contemporary, Hip-Hop, etc.).</li>
+            <li>Songs containing obscene, vulgar, or abusive lyrics are <strong>strictly prohibited</strong>.</li>
+            <li>Participants are responsible for their own costumes and props. Props must be safe, easy to set up, and remove.</li>
+            <li><strong>Dangerous items</strong> such as fire, glass, sharp objects, smoke effects, or fireworks are strictly banned.</li>
+            <li>Participants must report to the venue <strong>15 minutes before</strong> their scheduled slot.</li>
+            <li>The judges' decision will be final and binding.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Judging Criteria (Total: 100 Marks)</h3>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Criteria</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dance Technique & Synchronization with Music</td>
+                        <td><strong>30</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Expression & Stage Presence</td>
+                        <td><strong>25</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Creativity & Choreography</td>
+                        <td><strong>20</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Energy, Confidence & Audience Engagement</td>
+                        <td><strong>15</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Costume & Overall Presentation</td>
+                        <td><strong>10</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="submit-song" class="submission-card">
+        <h3>🎧 Submit Audio Track Link</h3>
+        <form onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="participant-name">Participant Full Name</label>
+                <input type="text" id="participant-name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="song-link">Audio Track Link (Google Drive / Cloud Link)</label>
+                <input type="url" id="song-link" placeholder="https://drive.google.com/file/d/..." required>
+            </div>
+            <button type="submit" class="btn">🚀 Submit Song Track</button>
+        </form>
+    </section>
+
+    <div class="note">
+        <strong>Note:</strong> Non-compliance with rules may lead to disqualification. Organizers reserve full rights to amend rules as necessary.
+    </div>
+
+    <footer>
+        &copy; KGiSL Institute of Technology &bull; Talent Blast 2K26
+    </footer>
+</div>
+
+<script>
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+        alert('✅ Track Submitted Successfully!');
+    }
+</script>
+
+</body>
+</html>
