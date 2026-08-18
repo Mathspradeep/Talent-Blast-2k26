@@ -39,18 +39,17 @@
             background-color: var(--bg-dark);
         }
 
-        .poster-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: url('poster.jpg') no-repeat center center fixed;
-            background-size: cover;
-            filter: brightness(0.45) contrast(1.15);
-            z-index: 0;
-            pointer-events: none;
-        }
+       .poster-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('poster.jpg') no-repeat center top / 120% auto fixed;
+    filter: brightness(0.45) contrast(1.15);
+    z-index: 0;
+    pointer-events: none;
+}
 
         .poster-overlay {
             position: fixed;
