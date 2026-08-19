@@ -170,7 +170,7 @@
         .btn-scorecard {
             background: linear-gradient(135deg, var(--primary-violet), #4a0080);
             box-shadow: 0 4px 15px rgba(138, 43, 226, 0.4);
-            display: none; /* Hidden by default from students */
+            display: none; /* Hidden from students by default */
         }
 
         .btn-admin {
@@ -386,16 +386,16 @@
 
     <section id="submit-song" class="submission-card">
         <h3>🎧 Submit Audio Track Link</h3>
-        <form onsubmit="handleFormSubmit(event)">
+        <form id="audioForm" onsubmit="handleFormSubmit(event)">
             <div class="form-group">
                 <label for="participant-name">Participant Full Name</label>
-                <input type="text" id="participant-name" placeholder="Enter your full name" required>
+                <input type="text" id="participant-name" name="participantName" placeholder="Enter your full name" required>
             </div>
             <div class="form-group">
                 <label for="song-link">Audio Track Link (Google Drive / Cloud Link)</label>
-                <input type="url" id="song-link" placeholder="https://drive.google.com/file/d/..." required>
+                <input type="url" id="song-link" name="songLink" placeholder="https://drive.google.com/file/d/..." required>
             </div>
-            <button type="submit" class="btn">🚀 Submit Song Track</button>
+            <button type="submit" id="submitBtn" class="btn">🚀 Submit Song Track</button>
         </form>
     </section>
 
@@ -410,6 +410,8 @@
 
 <script>
     const ADMIN_PASS = "Kite@123";
+    // Replace the string below with your deployed Google Apps Script Web App URL
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw1pednK2T4zCP4IHLXrGjU6_KMvmgTmATOqlDHodaa9pQPi_fqK-ilR9UspKf3ivu6Nw/exec"; 
 
     function loginAdmin() {
         const password = prompt("Enter Admin Password to access the score card:");
@@ -424,7 +426,31 @@
 
     async function handleFormSubmit(event) {
         event.preventDefault();
-        alert('✅ Track Submitted Successfully!');
+        
+        if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+            alert("⚠️ Please replace 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL' with your deployed Google Script URL in the code.");
+            return;
+        }
+
+        const submitBtn = document.getElementById('submitBtn');
+        submitBtn.disabled = true;
+        submitBtn.innerText = '⌛ Submitting...';
+
+        const formData = new FormData(event.target);
+
+        try {
+            await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            });
+            alert('✅ Track Submitted Successfully!');
+            event.target.reset();
+        } catch (error) {
+            alert('❌ Submission failed. Please try again or contact the event coordinator.');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = '🚀 Submit Song Track';
+        }
     }
 </script>
 
